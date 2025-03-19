@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакти</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Добавени стилове за форма и бутона */
+        .contacts-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contacts-container h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .contacts-container p {
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            font-size: 16px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        button {
+            background-color: #2d7032; /* Зелен цвят */
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px; /* Заоблен бутон */
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #163f19; /* Тъмен зелен при hover */
+        }
+
+        button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="cart">
+                <a href="cart.html">
+                    <img src="shopping-cart-white-icon.webp" alt="Количка" style="width: 30px; height: 30px;">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Начало</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                    <li><a href="author.html">Автор</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="contacts-section">
+        <div class="contacts-container">
+            <h1>Свържи се с нас</h1>
+            <p>Винаги сме тук, за да отговорим на твоите въпроси.</p>
+            <form action="process_form.php" method="POST">
+                <label for="name">Име:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Имейл:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Съобщение:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Изпрати</button>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Вашият онлайн магазин. Всички права запазени.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог на продукти</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="cart">
+                <a href="cart.html">
+                    <img src="shopping-cart-white-icon.webp" alt="Количка" style="width: 30px; height: 30px;">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Начало</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                    <li><a href="author.html">Автор</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="catalog">
+        <h2>Нашите продукти</h2>
+        <div class="product-slider">
+            <div class="product-card">
+                <img src="куфар3.jpg" alt="Продукт 1" id="product1-img">
+                <h3>Черен куфар</h3>
+                <p>100 лв.</p>
+                <button onclick="addToCart('Продукт 1', '100', 'куфар3.jpg')">Добави в количката</button>
+            </div>
+            
+            <div class="product-card">
+                <img src="куфар4.jpg" alt="Чанта 2" id="product2-img">
+                <h3>Сив куфар</h3>
+                <p>200 лв.</p>
+                <button onclick="addToCart('Чанта 2', '200', 'куфар4.jpg')">Добави в количката</button>
+            </div>
+
+            <div class="product-card">
+                <img src="чанта3.jpg" alt="Куфар 1" id="product3-img">
+                <h3>Черна раница</h3>
+                <p>Цена: 300 лв.</p>
+                <button onclick="addToCart('Куфар 1', '300', 'чанта3.jpg')">Добави в количката</button>
+            </div>
+
+            <div class="product-card">
+                <img src="чанта5.jpg" alt="Куфар 2" id="product4-img">
+                <h3>Спортна чанта</h3>
+                <p>Цена: 350 лв.</p>
+                <button onclick="addToCart('Куфар 2', '350', 'чанта5.jpg')">Добави в количката</button>
+            </div>
+
+            <div class="product-card">
+                <img src="чанта4.jpg" alt="Куфар 1" id="product5-img">
+                <h3>Работна чанта</h3>
+                <p>Цена: 300 лв.</p>
+                <button onclick="addToCart('Куфар 1', '300', 'чанта4.jpg')">Добави в количката</button>
+            </div>
+
+            <div class="product-card">
+                <img src="щрак.jpg" alt="Куфар 1" id="product6-img">
+                <h3>Куфар с ключалка</h3>
+                <p>Цена: 300 лв.</p>
+                <button onclick="addToCart('Куфар 1', '300', 'щрак.jpg')">Добави в количката</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Електронен магазин за чанти и куфари</p>
+    </footer>
+
+    <script>
+        function addToCart(productName, productPrice, productImage) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            cart.push({ name: productName, price: productPrice, image: productImage });
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            window.location.href = "cart.html"; 
+        }
+
+        function removeFromCart(productIndex) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(productIndex, 1); 
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            window.location.reload();
+        }
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const productName = event.target.getAttribute('data-product');
+                const productPrice = event.target.getAttribute('data-price');
+                addToCart(productName, productPrice); 
+            });
+        });
+    </script>
+</body>
+</html>

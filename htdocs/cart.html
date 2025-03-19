@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Количка</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="cart">
+                <a href="cart.html">
+                    <img src="shopping-cart-white-icon.webp" alt="Количка" style="width: 30px; height: 30px;">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Начало</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                    <li><a href="author.html">Автор</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="cart-container">
+        <h2>Вашата количка</h2>
+        <div id="cart-items"></div>
+        <h3>Обща сума: <span id="total-price">0</span> лв.</h3>
+        <div style="display: flex; justify-content: center; margin-top: 20px;">
+            <button id="checkout" style="background-color: #2d7032; color: white; padding: 15px 30px; border: none; cursor: pointer; border-radius: 25px; font-size: 16px;">Плащане</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Електронен магазин за чанти и куфари</p>
+    </footer>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartContainer = document.getElementById('cart-items');
+            let totalPrice = 0;
+            cartContainer.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                totalPrice += parseFloat(item.price);
+                cartContainer.innerHTML += `
+                    <div class="cart-item" style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <img src="${item.image}" alt="${item.name}" style="width: 120px; height: 120px; object-fit: cover; margin-right: 10px;">
+                        <div>
+                            <p><strong>${item.name}</strong></p>
+                            <p>${item.price} лв.</p>
+                            <button onclick="removeFromCart(${index})" style="background-color: #2d7032; color: white; padding: 5px 10px; border: none; cursor: pointer; border-radius: 10px;">Премахни</button>
+                        </div>
+                    </div>`;
+            });
+
+            document.getElementById('total-price').textContent = totalPrice;
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        document.getElementById('checkout').addEventListener('click', function() {
+            alert('Благодарим за направената поръчка! Наш служител ще се свърже с вас в най-скоро време.');
+            localStorage.removeItem('cart');
+            loadCart();
+        });
+
+        loadCart();
+    </script>
+</body>
+</html>
